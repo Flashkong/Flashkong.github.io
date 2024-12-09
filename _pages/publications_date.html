@@ -1,0 +1,32 @@
+---
+layout: archive
+title: "Publications"
+permalink: /publications_date/
+author_profile: true
+---
+
+<hr/>
+
+{% if site.author.googlescholar %}
+  <div class="wordwrap">You can also find my papers on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
+{% endif %}
+
+Click <a href="{{site.url}}/publications">here</a> to view by category.
+
+{% include base_path %}
+
+<hr/>
+<!-- New style rendering if publication categories are defined -->
+{% assign sorted_by_date = site.publications | sort: 'date' %} <!-- 按日期升序排列 -->
+{% assign sorted_posts = sorted_by_date | sort: 'importance' | reverse %} <!-- 按重要性降序排列 -->
+
+{% for post in sorted_posts %}
+  {% include archive-single-publication-project.html %}
+  {% unless forloop.last %}
+      <hr />
+  {% endunless %}
+{% endfor %}
+
+
+
+

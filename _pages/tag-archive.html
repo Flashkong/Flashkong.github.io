@@ -1,17 +1,73 @@
 ---
 layout: archive
 permalink: /tags/
-title: "Posts by Tags"
+title: "Contents by Tags"
 author_profile: true
 ---
 
 {% include base_path %}
-{% include group-by-array collection=site.posts field="tags" %}
 
-{% for tag in group_names %}
-  {% assign posts = group_items[forloop.index0] %}
-  <h2 id="{{ tag | slugify }}" class="archive__subtitle">{{ tag }}</h2>
-  {% for post in posts %}
-    {% include archive-single.html %}
+<!-- 合并所有内容 -->
+{% assign all_items = site.publications | concat: site.projects | concat: site.posts %}
+
+<!-- 按标签分组 -->
+{% include group-by-array collection=all_items field="tags" %}
+
+<!-- 按首字母排序，忽略大小写 -->
+{% assign sorted_group_names = group_names | sort_natural %}
+
+<!-- 生成标签跳转的列表 -->
+<ul>
+  {% for tag in sorted_group_names %}
+    <li><a href="#{{ tag | slugify }}">{{ tag }}</a></li>
   {% endfor %}
+</ul>
+
+<!-- 输出结果 -->
+{% for tag in sorted_group_names %}
+  {% assign items = group_items[forloop.index0] %}
+  <h1 id="{{ tag | slugify }}" style="margin: 1em 0 0.5em;">🏷️ {{ tag }}</h1><hr/>
+
+  {% assign publications_count = 0 %}
+  {% assign projects_count = 0 %}
+  {% assign posts_count = 0 %}
+  
+  {% for item in items %}
+    {% if item.collection == 'publications' %}
+      {% assign publications_count = publications_count | plus: 1 %}
+    {% elsif item.collection == 'projects' %}
+      {% assign projects_count = projects_count | plus: 1 %}
+    {% elsif item.collection == 'posts' %}
+      {% assign posts_count = posts_count | plus: 1 %}
+    {% endif %}
+  {% endfor %}
+
+  <!-- 分别处理 publications, projects, 和 posts -->
+  {% if publications_count > 0 %}
+  <h2 style="margin: 1em 0 0.5em;">Publications</h2><hr/>
+  {% for post in items %}
+    {% if post.collection == 'publications' %}
+      {% include archive-single-publication-project.html %}
+    {% endif %}
+  {% endfor %}
+  {% endif %}
+  
+  {% if projects_count > 0 %}
+  <h2 style="margin: 1em 0 0.5em;">Projects</h2><hr/>
+  {% for post in items %}
+    {% if post.collection == 'projects' %}
+      {% include archive-single-publication-project.html %}
+    {% endif %}
+  {% endfor %}
+  {% endif %}
+  
+  {% if posts_count > 0 %}
+  <h2 style="margin: 1em 0 0.5em;">Blogs</h2><hr/>
+  {% for post in items %}
+  {% if post.collection == 'posts' %}
+    {% include archive-single-blog.html %}
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+  
 {% endfor %}

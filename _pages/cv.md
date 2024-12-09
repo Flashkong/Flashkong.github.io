@@ -8,57 +8,129 @@ redirect_from:
 ---
 
 {% include base_path %}
+<hr/>
 
-Education
-======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+<style>
+.entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
 
-Work experience
-======
-* Spring 2024: Academic Pages Collaborator
-  * Github University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+.entry .content {
+  flex: 3; /* 主内容宽度 */
+}
 
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+.entry .time {
+  flex: 1; /* 时间宽度 */
+  text-align: right; /* 时间右对齐 */
+  font-style: italic; /* 可选：时间的字体样式 */
+}
 
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+.myp {
+  margin-top: 0;
+}
+
+.myh2 {
+  margin-top: 1em;
+}
+
+</style>
+
+<h2>🛕 Education</h2>
+{% assign education_content1 = "
+  - Combined Master and Doctoral Program
+    - M.S.: Sep. 2020 – Jun. 2022
+    - Ph.D.: Sep. 2022 – Present
+  - Computer Science and Technology
+  - Supervisor: [Prof. Mao Ye](https://scholar.google.com/citations?user=UUbEzBYAAAAJ)
+" %}
+{% assign education_content2 = "
+  - Computer Science and Technology
+  - GPA: 3.82/4.0, Top 20% Students
+  - Postgraduate Recommendation
+" %}
+
+<hr/>
+<div class="education">
+  <div class="entry">
+    <div class="content">
+      <p class="myp">Ph.D., University of Electronic Science and Technology of China</p>
+      {{education_content1 | markdownify}}
+    </div>
+    <div class="time">Sep. 2020 – Present</div>
+  </div>
+  <div class="entry">
+    <div class="content">
+      <p class="myp">B.S., University of Electronic Science and Technology of China</p>
+      {{education_content2 | markdownify}}
+    </div>
+    <div class="time">Sep. 2016 – Jun. 2020</div>
+  </div>
+</div>
+
+<h2 class="myh2">🧐 Research Experience</h2>
+<hr/>
+{% assign research1 = "
+  - Cloud Object Detector Adaptation
+" %}
+{% assign research2 = "
+  - Unsupervised Domain Adaptive Object Detection
+  - Source-free Object Detection
+" %}
+{% assign research3 = "
+  - Thermal Pedestrian Detection
+  - Multispectral Pedestrian Detection
+" %}
+<div class="research">
+  <div class="entry">
+    <div class="content">
+      <p class="myp">Large Cloud Model Adaptation</p>
+      {{research1 | markdownify}}
+    </div>
+    <div class="time">2024 – Present</div>
+  </div>
+  <div class="entry">
+    <div class="content">
+      <p class="myp">Domain Adaptive Object Detection</p>
+      {{research2 | markdownify}}
+    </div>
+    <div class="time">2020 – Present</div>
+  </div>
+  <div class="entry">
+    <div class="content">
+      <p class="myp">Multi-Modal Pedestrian Detection</p>
+      {{research3 | markdownify}}
+    </div>
+    <div class="time">2023 – Present</div>
+  </div>
+</div>
+
+<h2 class="myh2">🎯 Publications</h2>
+<hr/>
+{% assign sorted_by_date = site.publications | sort: 'date' %} <!-- 按日期升序排列 -->
+{% assign sorted_posts = sorted_by_date | sort: 'importance' | reverse %} <!-- 按重要性降序排列 -->
+
+{% for post in sorted_posts %}
+  {% include archive-single-publication-project.html %}
+  {% unless forloop.last %}
+{% raw %}
+<hr />
+{% endraw %}
+  {% endunless %}
+{% endfor %}
+
+
+<h2>🏆️ Selected awards</h2>
+<hr/>
+- [2024] Second Prize, China Postgraduate Mathematical Contest in Modeling
+- [2020–2024] Multiple Academic Excellence Scholarships (First Class, Second Class)
+- [2022] Academic Seedling Award, University of Electronic Science and Technology of China
+- [2016–2020] Multiple National Encouragement Scholarships and Outstanding Student Scholarships (Top 20% Students)
   
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
-
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+<h2>🧭 Service</h2>
+<hr/>
+- Conference Reviewer
+  - ACM International Conference on Multimedia (ACM MM), 2023, 2024
+- Journal Reviewer
+  - Knowledge-Based Systems (KBS)

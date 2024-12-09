@@ -1,0 +1,188 @@
+---
+layout: default
+---
+
+{% include base_path %}
+
+{% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
+  {% include page__hero.html %}
+{% endif %}
+
+{% if page.url != "/" and site.breadcrumbs %}
+  {% unless paginator %}
+    {% include breadcrumbs.html %}
+  {% endunless %}
+{% endif %}
+
+{% if page.inner.teaser %}
+  {% capture teaser %}{{ page.inner.teaser }}{% endcapture %}
+{% else %}
+  {% assign teaser = site.teaser %}
+{% endif %}
+
+<style>
+  body {
+    line-height: 1.5;
+  }
+</style>
+
+<div id="main" role="main">
+  {% include sidebar.html %}
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
+    {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
+    {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date: "%B %d, %Y" }}">{% endif %}
+    {% if page.modified %}<meta itemprop="dateModified" content="{{ page.modified | date: "%B %d, %Y" }}">{% endif %}
+
+    <div class="page__inner-wrap">
+      {% unless page.header.overlay_color or page.header.overlay_image %}
+        
+        <header>
+          
+          <div class="myteaser_old">
+            <img src=
+              {% if teaser contains "://" %}
+                "{{ teaser }}"
+              {% else %}
+                "{{ teaser | prepend: "/images/" | prepend: base_path }}"
+              {% endif %}
+              alt="{{ title }}">
+          </div>
+
+
+          {% if page.title %}<h1 class="page__title" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>{% endif %}
+          <hr/>
+          {% if page.read_time %}
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</p>
+          {% endif %}
+        {% if page.author %}
+          <p>{{ page.author | markdownify}}</p>
+        {% endif %}
+        {% if page.modified %}
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ page.modified | date: "%Y-%m-%d" }}">{{ page.modified | date: "%B %d, %Y" }}</time></p>
+        {% endif %}
+        
+          {% assign supp = page.supp %}
+          {% assign venue = page.venue %}
+          
+          {% if supp != '' %}
+              {% assign venue = venue | append: ", " %}
+              {% assign venue = venue | append: supp %}
+          {% endif %}
+
+          <p>{{ venue | markdownify}}</p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
+
+          {% if page.keyword and page.keyword != '' %}
+            <p class="archive__item-excerpt" itemprop="description">{{ page.keyword | markdownify }}</p>
+          {% endif %}
+
+          {% assign links = "" %}
+        {% assign separator = "" %}
+
+        {% if page.paperurl and page.paperurl != '' %}
+          {% capture link %}<a href="{{ page.paperurl }}">Paper</a>{% endcapture %}
+          {% assign links = links | append: separator | append: link %}
+          {% assign separator = " | " %}
+        {% endif %}
+
+        {% if page.codeurl and page.codeurl != '' %}
+          {% capture link %}<a href="{{ page.codeurl }}">Code</a>{% endcapture %}
+          {% assign links = links | append: separator | append: link %}
+          {% assign separator = " | " %}
+        {% endif %}
+
+        {% if page.projecturl and page.projecturl != '' %}
+          {% capture link %}<a href="{{ site.url }}{{ page.projecturl }}">Project</a>{% endcapture %}
+          {% assign links = links | append: separator | append: link %}
+          {% assign separator = " | " %}
+        {% endif %}
+
+        {% if page.videourl and page.videourl != '' %}
+          {% capture link %}<a href="{{ page.videourl }}">Video</a>{% endcapture %}
+          {% assign links = links | append: separator | append: link %}
+          {% assign separator = " | " %}
+        {% endif %}
+
+        {% if page.slidesurl and page.slidesurl != '' %}
+          {% capture link %}<a href="{{ site.url }}{{ page.slidesurl }}">Slides</a>{% endcapture %}
+          {% assign links = links | append: separator | append: link %}
+          {% assign separator = " | " %}
+        {% endif %}
+
+        {% if page.posterurl and page.posterurl != '' %}
+          {% capture link %}<a href="{{ site.url }}{{ page.posterurl }}">Poster</a>{% endcapture %}
+          {% assign links = links | append: separator | append: link %}
+          {% assign separator = " | " %}
+        {% endif %}
+
+        {% if page.summaryurl and page.summaryurl != '' %}
+          {% capture link %}<a href="{{ site.url }}{{ page.summaryurl }}">Summary</a>{% endcapture %}
+          {% assign links = links | append: separator | append: link %}
+          {% assign separator = " | " %}
+        {% endif %}
+
+        {% if page.blogurl and page.blogurl != '' %}
+          {% capture link %}<a href="{{ site.url }}{{ page.blogurl }}">Blog</a>{% endcapture %}
+          {% assign links = links | append: separator | append: link %}
+          {% assign separator = " | " %}
+        {% endif %}
+
+        {% if page.zhihuurl and page.zhihuurl != '' %}
+          {% capture link %}<a href="{{ page.zhihuurl }}">Zhihu</a>{% endcapture %}
+          {% assign links = links | append: separator | append: link %}
+          {% assign separator = " | " %}
+        {% endif %}
+
+        {% if page.xiaohognshuurl and page.xiaohognshuurl != '' %}
+          {% capture link %}<a href="{{ page.xiaohognshuurl }}">REDnote</a>{% endcapture %}
+          {% assign links = links | append: separator | append: link %}
+          {% assign separator = " | " %}
+        {% endif %}
+
+        {% if links != "" %}
+          <p>{{ links }}</p>
+        {% endif %}
+        </header>
+      {% endunless %}
+
+      <section class="page__content"  itemprop="text">
+        {{ content }}
+        
+        
+
+        {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
+      </section>
+
+      <footer class="page__meta">
+        {% if site.data.ui-text[site.locale].meta_label %}
+          <h4 class="page__meta-title">{{ site.data.ui-text[site.locale].meta_label }}</h4>
+        {% endif %}
+        {% include page__taxonomy.html %}
+      </footer>
+
+      {% if page.share %}{% include social-share.html %}{% endif %}
+
+      {% include post_pagination.html %}
+    </div>
+
+    {% if site.comments.provider and page.comments %}
+      {% include comments.html %}
+    {% endif %}
+  </article>
+
+  {% comment %}<!-- only show related on a post page when not disabled -->{% endcomment %}
+  {% if page.id and page.related and site.related_posts.size > 0 %}
+    <div class="page__related">
+      {% if site.data.ui-text[site.locale].related_label %}
+        <h4 class="page__related-title">{{ site.data.ui-text[site.locale].related_label | default: "You May Also Enjoy" }}</h4>
+      {% endif %}
+      <div class="grid__wrapper">
+        {% for post in site.related_posts limit:4 %}
+          {% include archive-single.html type="grid" %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+</div>

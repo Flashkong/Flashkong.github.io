@@ -193,6 +193,23 @@ body:hover .visually-hidden button {
   margin-right: 0.5em;
 }
 
+.icon-pad-right-img {
+  padding-right: 0.33em;
+  margin-right: 0.33em;
+}
+
+.openreivew-img{
+  width: 14px !important; /* 调整图片宽度 */
+  height: 14px !important; /* 调整图片高度 */
+  vertical-align: middle; /* 确保图片与文本对齐 */
+}
+
+.flex-container {
+  display: inline-flex;
+  align-items: center; /* 垂直对齐 */
+  gap: 0.33em; /* 图片和文字之间的间距 */
+}
+
 /* social icons*/
 
 .social-icons {

@@ -1,0 +1,161 @@
+{% include base_path %}
+
+{% if post.header.teaser %}
+  {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
+{% else %}
+  {% assign teaser = site.teaser %}
+{% endif %}
+
+{% if post.id %}
+  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+{% else %}
+  {% assign title = post.title %}
+{% endif %}
+
+<div class="{{ include.type | default: "list" }}__item" style="padding-right: 0;">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div class="archive__item-content" style="line-height: 1.1;">
+      <div class="archive__item-teaser">
+        <img src=
+          {% if teaser contains "://" %}
+            "{{ teaser }}"
+          {% else %}
+            "{{ teaser | prepend: "/images/" | prepend: base_path }}"
+          {% endif %}
+          alt="{{ title }}">
+      </div>
+      <div class="archive__item-details">
+        <h2 class="archive__item-title" style="margin: 0.5em 0 0.5em;" itemprop="headline">
+          {% if post.link %}
+            <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
+          {% else %}
+            <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
+          {% endif %}
+        </h2>
+        
+        {% if post.read_time %}
+          <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</p>
+        {% endif %}
+
+        {% assign author_list = post.author %}
+        {% assign venue = post.venue %}
+        {% assign year = post.date | default: '1900-01-01' | date: '%Y' %}
+        {% assign supp = post.supp %}
+        {% assign content = "" %}
+
+        {% if author_list %}
+          {% assign content = content | append: author_list %}
+          {% if venue or year %}
+            {% assign content = content | append: ". " %}
+          {% endif %}
+        {% endif %}
+
+        {% if venue %}
+          {% assign content = content | append: venue %}
+          {% if year %}
+            {% assign content = content | append: ", " %}
+          {% endif %}
+        {% endif %}
+
+        {% if year %}
+          {% assign content = content | append: year %}
+        {% endif %}
+
+        {% if supp != '' %}
+          {% if content != "" %}
+            {% assign content = content | append: ", " %}
+          {% endif %}
+          {% assign content = content | append: supp %}
+        {% endif %}
+
+        {% if content != "" %}
+          {% assign content = content | append: "." %}
+          <p itemprop="author">{{ content | markdownify }}</p>
+        {% endif %}
+
+        {% if post.keyword and post.keyword != '' %}
+          <p class="archive__item-excerpt" itemprop="description">{{ post.keyword | markdownify }}</p>
+        {% endif %}
+
+        {% if post.excerpt and post.excerpt != '' %}
+          {% if site.read_more != 'enabled' %}
+            <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
+          {% elsif site.read_more == 'enabled' %}
+            <p class="archive__item-excerpt" itemprop="description">
+              {{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}
+              <strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong>
+            </p>
+          {% endif %}
+        {% endif %}
+
+        {% assign links = "" %}
+        {% assign separator = "" %}
+
+        {% if post.paperurl and post.paperurl != '' %}
+          {% capture link %}<a href="{{ post.paperurl }}">Paper</a>{% endcapture %}
+          {% assign links = links | append: separator | append: link %}
+          {% assign separator = " | " %}
+        {% endif %}
+
+        {% if post.codeurl and post.codeurl != '' %}
+          {% capture link %}<a href="{{ post.codeurl }}">Code</a>{% endcapture %}
+          {% assign links = links | append: separator | append: link %}
+          {% assign separator = " | " %}
+        {% endif %}
+
+        {% if post.projecturl and post.projecturl != '' %}
+          {% capture link %}<a href="{{ site.url }}{{ post.projecturl }}">Project</a>{% endcapture %}
+          {% assign links = links | append: separator | append: link %}
+          {% assign separator = " | " %}
+        {% endif %}
+
+        {% if post.videourl and post.videourl != '' %}
+          {% capture link %}<a href="{{ post.videourl }}">Video</a>{% endcapture %}
+          {% assign links = links | append: separator | append: link %}
+          {% assign separator = " | " %}
+        {% endif %}
+
+        {% if post.slidesurl and post.slidesurl != '' %}
+          {% capture link %}<a href="{{ site.url }}{{ post.slidesurl }}">Slides</a>{% endcapture %}
+          {% assign links = links | append: separator | append: link %}
+          {% assign separator = " | " %}
+        {% endif %}
+
+        {% if post.posterurl and post.posterurl != '' %}
+          {% capture link %}<a href="{{ site.url }}{{ post.posterurl }}">Poster</a>{% endcapture %}
+          {% assign links = links | append: separator | append: link %}
+          {% assign separator = " | " %}
+        {% endif %}
+
+        {% if post.summaryurl and post.summaryurl != '' %}
+          {% capture link %}<a href="{{ site.url }}{{ post.summaryurl }}">Summary</a>{% endcapture %}
+          {% assign links = links | append: separator | append: link %}
+          {% assign separator = " | " %}
+        {% endif %}
+
+        {% if post.blogurl and post.blogurl != '' %}
+          {% capture link %}<a href="{{ site.url }}{{ post.blogurl }}">Blog</a>{% endcapture %}
+          {% assign links = links | append: separator | append: link %}
+          {% assign separator = " | " %}
+        {% endif %}
+
+        {% if post.zhihuurl and post.zhihuurl != '' %}
+          {% capture link %}<a href="{{ post.zhihuurl }}">Zhihu</a>{% endcapture %}
+          {% assign links = links | append: separator | append: link %}
+          {% assign separator = " | " %}
+        {% endif %}
+
+        {% if post.xiaohognshuurl and post.xiaohognshuurl != '' %}
+          {% capture link %}<a href="{{ post.xiaohognshuurl }}">REDnote</a>{% endcapture %}
+          {% assign links = links | append: separator | append: link %}
+          {% assign separator = " | " %}
+        {% endif %}
+
+        {% if links != "" %}
+          <p>{{ links }}</p>
+        {% endif %}
+      </div>
+      
+    </div>
+  </article>
+</div>
