@@ -46,7 +46,7 @@ We propose to explore an interesting and promising problem, **Cloud Object Detec
 " | markdownify}}</div>
 
 <h2 style="margin: 0.5em 0 0.5em;" >Supplement</h2>
-*Please note that CODA does not restrict whether CLIP is used, even though CLIP is used in our method COIN.*
+*Please note that CODA aims to adapt/distill the cloud detector to target domain, e.g., a target detector, so the use of CLIP is optional. To address the CODA problem, our method, COIN, employs CLIP; however, **this does not imply that the CODA problem setting assumes the existence of a local (CLIP or source domain) detector, nor does it assume that CLIP must necessarily be used.** Please keep this distinction in mind.*
 
 <h2 style="margin: 0.5em 0 0.5em;" >Cite this paper</h2>
 ```bib
