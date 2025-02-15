@@ -131,7 +131,8 @@ redirect_from:
 <h2>🧭 Service</h2>
 <hr/>
 - Conference Reviewer
-  - ACM International Conference on Multimedia (ACM MM), 2023, 2024
+  - ACM International Conference on Multimedia (ACM MM), 2023, 2024, 2025
   - The IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2025
+  - International Conference on Computer Vision, ICCV 2025
 - Journal Reviewer
   - Knowledge-Based Systems (KBS)
