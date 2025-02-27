@@ -46,6 +46,7 @@ I am open to research collaborations. If you share similar interests or are inte
 </p>
 
 <h1 class="myh2">💥 News</h1>
+- [2025/02] 2 papers are accepted by **CVPR 2025**! Congrats to Lihua and Liting!
 - [2024/09] 1 paper that explores cloud object detector adaptation is accepted by **NeurIPS 2024**!
 - [2024/08] 1 paper about black-box domain adaptation is accepted by **ACMM MM 2024**! Congrats to Siying!
 - [2023/04] 1 paper using mutual learning for UDA is accepted by **TCSVT**! Congrats to Lihua!
