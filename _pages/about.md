@@ -46,6 +46,7 @@ I am open to research collaborations. If you share similar interests or are inte
 </p>
 
 <h1 class="myh2">💥 News</h1>
+- [2025/03] 1 paper about ODE-flow based image generation is accepted by ESWA! Congrats to Jian Yue!
 - [2025/02] 2 papers are accepted by **CVPR 2025**! Congrats to Lihua and Liting!
 - [2024/09] 1 paper that explores cloud object detector adaptation is accepted by **NeurIPS 2024**!
 - [2024/08] 1 paper about black-box domain adaptation is accepted by **ACMM MM 2024**! Congrats to Siying!

@@ -21,7 +21,7 @@ supp: ''
 keyword: '**Key Words:** Cloud Object Detector Adaptation; Gradient Direction Alignment'
 excerpt: '**We propose to explore an interesting and promising problem CODA.**'
 
-paperurl: 'https://openreview.net/pdf?id=S8SEjerTTg'
+paperurl: 'https://proceedings.neurips.cc/paper_files/paper/2024/file/2ce4f0b8e24c45318352068603153590-Paper-Conference.pdf'
 codeurl: 'https://github.com/Flashkong/COIN'
 projecturl: '/projects/coin'
 videourl: ''
@@ -73,12 +73,15 @@ We propose to explore an interesting and promising problem, **Cloud Object Detec
 
 <h2 style="margin: 0.5em 0 0.5em;" >Cite this paper</h2>
 ```bib
-@inproceedings{
-    li2024cloud,
-    title={Cloud Object Detector Adaptation by Integrating Different Source Knowledge},
-    author={Shuaifeng Li and Mao Ye and Lihua Zhou and Nianxin Li and Siying Xiao and Song Tang and Xiatian Zhu},
-    booktitle={The Thirty-eighth Annual Conference on Neural Information Processing Systems},
-    year={2024},
-    url={https://openreview.net/forum?id=S8SEjerTTg}
+@inproceedings{NEURIPS2024_2ce4f0b8,
+ author = {Li, Shuaifeng and Ye, Mao and Zhou, Lihua and Li, Nianxin and Xiao, Siying and Tang, Song and Zhu, Xiatian},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {A. Globerson and L. Mackey and D. Belgrave and A. Fan and U. Paquet and J. Tomczak and C. Zhang},
+ pages = {25251--25283},
+ publisher = {Curran Associates, Inc.},
+ title = {Cloud Object Detector Adaptation by Integrating Different Source Knowledge},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2024/file/2ce4f0b8e24c45318352068603153590-Paper-Conference.pdf},
+ volume = {37},
+ year = {2024}
 }
 ```
