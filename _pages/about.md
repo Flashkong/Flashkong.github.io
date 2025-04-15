@@ -79,8 +79,9 @@ I am open to research collaborations. If you share similar interests or are inte
 <h1 class="myh2">🧭 Service</h1>
 <hr/>
 - Conference Reviewer
-  - ACM International Conference on Multimedia (ACM MM), 2023, 2024, 2025
   - The IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2025
   - International Conference on Computer Vision, ICCV 2025
+  - Annual Conference on Neural Information Processing Systems (NeurIPS), 2025
+  - ACM International Conference on Multimedia (ACM MM), 2023, 2024, 2025
 - Journal Reviewer
   - Knowledge-Based Systems (KBS)
