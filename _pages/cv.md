@@ -132,7 +132,7 @@ redirect_from:
 <hr/>
 - Conference Reviewer
   - The IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2025
-  - International Conference on Computer Vision, ICCV 2025
+  - International Conference on Computer Vision (ICCV), 2025
   - Annual Conference on Neural Information Processing Systems (NeurIPS), 2025
   - ACM International Conference on Multimedia (ACM MM), 2023, 2024, 2025
 - Journal Reviewer
