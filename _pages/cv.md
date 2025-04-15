@@ -137,3 +137,4 @@ redirect_from:
   - ACM International Conference on Multimedia (ACM MM), 2023, 2024, 2025
 - Journal Reviewer
   - Knowledge-Based Systems (KBS)
+  - Engineering Applications of Artificial Intelligence (EAAI)

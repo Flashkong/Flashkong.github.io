@@ -85,3 +85,4 @@ I am open to research collaborations. If you share similar interests or are inte
   - ACM International Conference on Multimedia (ACM MM), 2023, 2024, 2025
 - Journal Reviewer
   - Knowledge-Based Systems (KBS)
+  - Engineering Applications of Artificial Intelligence (EAAI)
